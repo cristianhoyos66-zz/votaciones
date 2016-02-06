@@ -1,0 +1,94 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    <span ng-if="!editcreateVm.judge._id">
+      Nuevo Jurado 
+    </span>
+    <span ng-if="editcreateVm.judge._id">
+      Editar Jurado
+    </span>
+    <button type="button"
+	    class="control-not-border
+		   close"
+	    ng-click="editcreateVm.close()">
+      <span aria-hidden="true">
+	&times;
+      </span>
+      <span class="sr-only">
+	Close
+      </span>
+    </button>
+  </h3>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form"
+	    name="ecJudgesForm">
+	<div class="form-group
+		    col-md-12"
+	     ng-class="{'has-success':
+		       ecJudgesForm.txtDocument.$valid,
+		       'has-error':
+		       ecJudgesForm.txtDocument.$invalid}">
+          <label for="document">
+	    Documento:
+	  </label>
+          <input class="form-control"
+		 id="document"
+		 name="txtDocument"
+		 notallowletters
+		 required
+		 placeholder="ej: 45643432"
+		 ng-model="editcreateVm.judge.username">
+        </div>
+	<div class="form-group
+		    col-md-12"
+	     ng-class="{'has-success':
+		       ecJudgesForm.txtName.$valid,
+		       'has-error':
+		       ecJudgesForm.txtName.$invalid}">
+          <label for="name">
+	    Nombre y apellidos:
+	  </label>
+          <input class="form-control"
+		 id="name"
+		 name="txtName"
+		 required
+		 placeholder="ej: Camila Cárdenas"
+		 ng-model="editcreateVm.judge.profile.name">
+        </div>
+	<div class="form-group
+		    col-md-12"
+	     ng-class="{'has-success':
+		       ecJudgesForm.txtPass.$valid,
+		       'has-error':
+		       ecJudgesForm.txtPass.$invalid}">
+          <label for="name">
+	   Contraseña:
+	  </label>
+          <input class="form-control"
+		 type="password"
+		 id="pass"
+		 name="txtPass"
+		 placeholder="ej: ****************"
+		 ng-model="editcreateVm.judge.password">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn
+		 btn-success"
+	  type="button"
+	  ng-click="editcreateVm.save()"
+	  ng-disabled="ecJudgesForm.$invalid">
+    Guardar cambios
+  </button>
+  <button class="btn btn-danger"
+	  type="button"
+	  ng-click="editcreateVm.close()">
+    Cancelar
+  </button>
+</div>
+

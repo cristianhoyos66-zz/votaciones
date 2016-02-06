@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">
+      Jurados      
+      <button class="btn btn-success
+		     fa fa-plus
+		     button-title"
+	      title="Agregar"
+	      ng-click="judgesVm.newJudge()">
+      </button>
+    </h1>
+  </div>  
+</div>
+<div class="row">
+  <div class="col-lg-12">  
+    <div class="form-group">
+      <input id="filter"
+	     placeholder="Buscar aquí"
+	     type="text"
+	     class="form-control
+		    text-no-radius
+		    textfield-no-border"/>
+    </div>
+    <table class="table footable" data-filter="#filter" data-page-size="10">
+      <thead>
+	<tr>
+	  <th data-sort-initial="true">
+            Documento
+	  </th>
+	  <th>
+            Nombre y apellidos
+	  </th>
+	  <th colspan="2" data-sort-ignore="true">
+	  </th>
+	</tr>
+      </thead>
+      <tbody>
+	<tr class="alternate-color"
+	    ng-repeat="judge
+		       in
+		       judgesVm.judges">
+	  <td>{{judge.profile.document}}</td>
+	  <td>{{judge.profile.name}}</td>
+	  <td>
+	    <button title="Modificar"
+		    class="btn
+			   btn-warning
+			   fa
+			   fa-pencil"
+		    ng-click="judgesVm.editJudge(judge)">
+	    </button>
+	  </td>	
+	  <td>
+	    <button title="Eliminar"
+		    class="btn
+			   btn-danger
+			   fa
+			   fa-close"
+		    ng-click="judgesVm.removeJudge(judge)">
+	    </button>
+	  </td>	
+	</tr>
+      </tbody>
+      <tfoot class="hide-if-no-paging">
+	<tr>
+	  <td colspan="6" align="center">
+	    <ul class="pagination"></ul>
+	  </td>
+	</tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+

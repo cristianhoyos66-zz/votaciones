@@ -1,0 +1,131 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    <span ng-if="!editcreateVm.student._id">Nuevo Estudiante</span>
+    <span ng-if="editcreateVm.student._id">Editar Estudiante</span>
+    <button type="button"
+	    class="control-not-border
+		   close"
+	    ng-click="editcreateVm.close()">
+      <span aria-hidden="true">
+	&times;
+      </span>
+      <span class="sr-only">
+	Close
+      </span>
+    </button>
+  </h3>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form"
+	    name="ecStudentsForm">
+	<div
+	   class="form-group">
+	  <input
+	     type="file"
+	     fileread="editcreateVm.imageSelected(files)"
+	     id="img"
+	     accept="image/*">
+	  <button
+	     type="button"
+	     class="btn btn-primary"
+	     ng-click="editcreateVm.selectImage()">
+	    Subir imágen del estudiante
+	  </button>
+	  <br>
+	  <br>
+	  <a
+	     href="{{$root.urlServer + company.previewImg}}"
+	     target="_blank">
+	    <img
+	       ng-if="editcreateVm.previewImg"
+	       ng-src="{{$root.urlServer + editcreateVm.previewImg}}"
+	       class="img-reponsive
+		      img-thumbnail
+		      imgItem">
+	  </a>
+	</div>	
+	<div class="form-group
+		    col-md-12"
+	     ng-class="{'has-success':
+		       ecStudentsForm.txtDocument.$valid,
+		       'has-error':
+		       ecStudentsForm.txtDocument.$invalid}">
+          <label for="document">
+	    Documento:
+	  </label>
+          <input class="form-control"
+		 id="document"
+		 name="txtDocument"
+		 notallowletters
+		 required
+		 placeholder="ej: 45643432"
+		 ng-model="editcreateVm.student.username">
+        </div>
+	<div class="form-group
+		    col-md-12"
+	     ng-class="{'has-success':
+		       ecStudentsForm.txtName.$valid,
+		       'has-error':
+		       ecStudentsForm.txtName.$invalid}">
+          <label for="name">
+	    Nombre y apellidos:
+	  </label>
+          <input class="form-control"
+		 id="name"
+		 name="txtName"
+		 required
+		 placeholder="ej: Camila Cárdenas"
+		 ng-model="editcreateVm.student.profile.name">
+        </div>
+	<div class="form-group
+		    col-md-12"
+	     ng-class="{'has-success':
+		       ecStudentsForm.txtGrade.$valid,
+		       'has-error':
+		       ecStudentsForm.txtGrade.$invalid}">
+          <label for="grade">
+	    Grado:
+	  </label>
+          <input class="form-control"
+		 id="grade"
+		 name="txtGrade"
+		 required
+		 placeholder="ej: 8"
+		 ng-model="editcreateVm.student.profile.grade">
+        </div>
+	<div class="form-group
+		    col-md-12"
+	     ng-class="{'has-success':
+		       ecStudentsForm.txtGroup.$valid,
+		       'has-error':
+		       ecStudentsForm.txtGroup.$invalid}">
+          <label for="group">
+	    Grupo:
+	  </label>
+          <input class="form-control"
+		 id="group"
+		 name="txtGroup"
+		 required
+		 placeholder="ej: 2"
+		 ng-model="editcreateVm.student.profile.group">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn
+		 btn-success"
+	  type="button"
+	  ng-click="editcreateVm.save()"
+	  ng-disabled="ecStudentsForm.$invalid">
+    Guardar cambios
+  </button>
+  <button class="btn btn-danger"
+	  type="button"
+	  ng-click="editcreateVm.close()">
+    Cancelar
+  </button>
+</div>

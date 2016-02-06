@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-lg-6">
+    <h1 class="page-header">
+      Votación de personero<br>
+      <small>
+	Total de votos {{votationsVm.totalPersonerosRates}}
+      </small>
+    </h1>
+    <div class="col-lg-12">
+      <div ng-repeat="candidatePersonero in
+		      votationsVm.personerosList.usersInformation"
+	   class="col-lg-6
+		  ng-isolate-scope"
+	   number="12"
+	   comments="New tasks!"
+	   colour="primary" type="user">
+	<br>
+	<div class="panel panel-primary" style="position: relative">
+          <div class="panel-heading">
+            <div class="row">
+	      <div class="col-xs-3">
+		<img
+		   ng-if="candidatePersonero.profile.previewImg"
+		   ng-src="{{$root.urlServer + candidatePersonero.profile.previewImg}}"
+		   class="img-reponsive img-candidate">
+		<i ng-if="!candidatePersonero.profile.previewImg" class="fa fa-user fa-5x"></i>
+	      </div>
+	      <div class="col-xs-9 text-right">
+		<div class="huge-2">{{candidatePersonero.profile.name}}</div>
+		<div>{{candidatePersonero.profile.document}}</div>
+	      </div>
+	    </div>
+	  </div>
+	  <a>
+            <div
+	       class="panel-footer">
+	      <span
+		 class="pull-left">
+		{{candidatePersonero.profile.grade}} -
+		{{candidatePersonero.profile.group}}
+	      </span>
+	      <span
+		 class="pull-right">
+		<b>Votos:</b> {{candidatePersonero.votes}}
+	      </span>
+	      <div class="clearfix"></div>
+            </div>
+          </a>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <h1 class="page-header">
+      Votación de contralor<br>
+      <small>
+	Total de votos {{votationsVm.totalComptrollerRates}}
+      </small>
+    </h1>
+    <div class="col-lg-12">
+      <div ng-repeat="candidateComptroller in
+		      votationsVm.comptrollerList.usersInformation"
+	   class="col-lg-6
+		  ng-isolate-scope"
+	   number="12"
+	   comments="New tasks!"
+	   colour="primary" type="user">
+	<br>
+	<div class="panel panel-primary" style="position: relative">
+          <div class="panel-heading">
+            <div class="row">
+	      <div class="col-xs-3">
+		<img
+		   ng-if="candidateComptroller.profile.previewImg"
+		   ng-src="{{$root.urlServer + candidateComptroller.profile.previewImg}}"
+		   class="img-reponsive img-candidate">
+		<i ng-if="!candidateComptroller.profile.previewImg" class="fa fa-user fa-5x"></i>
+	      </div>
+	      <div class="col-xs-9 text-right">
+		<div class="huge-2">{{candidateComptroller.profile.name}}</div>
+		<div>{{candidateComptroller.profile.document}}</div>
+	      </div>
+	    </div>
+	  </div>
+	  <a>
+            <div class="panel-footer">
+	      <span
+		 class="pull-left">
+		{{candidateComptroller.profile.grade}} -
+		{{candidateComptroller.profile.group}}
+	      </span>
+	      <span
+		 class="pull-right">
+		<b>Votos:</b> {{candidateComptroller.votes}}
+	      </span>
+	      <div class="clearfix"></div>
+            </div>
+          </a>
+	</div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+

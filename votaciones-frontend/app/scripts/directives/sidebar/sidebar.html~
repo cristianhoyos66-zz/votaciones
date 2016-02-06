@@ -1,0 +1,72 @@
+<div class="navbar-default
+	    sidebar"
+     role="navigation">
+  <div class="sidebar-nav
+	      navbar-collapse">
+    <ul class="nav
+	       in"
+	id="side-menu">
+      <li ui-sref-active="active">
+        <a ui-sref="auth.home">
+	  <i class="fa
+		    fa-check
+		    fa-fw">
+	  </i>
+	 Votaciones
+	</a>
+      </li>
+      <li ng-if="$root.loggedUser.profile.isAdmin === true" ng-class="{active: collapseVar==1}">
+        <a href=""
+	   ng-click="check(1)">
+	  <i class="fa fa-users
+		    fa-fw">
+	  </i>
+	  Candidatos
+	  <!--span class="fa
+		       arrow">
+	  </span-->
+	</a>
+        <ul class="nav
+		   nav-second-level"
+	    collapse="collapseVar!=1">
+          <li ui-sref-active="active">
+            <a ui-sref="auth.personero.main">
+	      <span class="fa
+			   fa-user">
+	      </span>
+	      Personero			
+	    </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="auth.comptroller.main">
+	      <span class="fa
+			   fa-user">
+	      </span>
+	      Contralor
+	    </a>
+          </li>
+        </ul>
+        <!-- /.nav-second-level -->
+      </li>
+      <li ng-if="$root.loggedUser.profile.isAdmin === true" ui-sref-active="active">
+        <a ui-sref="auth.judges.main">
+	  <i class="fa
+		    fa-male
+		    fa-fw">
+	  </i>
+	  Jurados
+	</a>
+      </li>
+      <li ng-if="$root.loggedUser.profile.isAdmin === true" ui-sref-active="active">
+        <a ui-sref="auth.students.main">
+	  <i class="fa
+		    fa-child
+		    fa-fw">
+	  </i>
+	  Estudiantes
+	</a>
+      </li>
+    </ul>
+  </div>
+  <!-- /.sidebar-collapse -->
+</div> 

@@ -1,0 +1,53 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name votacionesFrontendApp.controller:AuthPersoneroCtrl
+ * @description
+ * # AuthPersoneroCtrl
+ * Controller of the votacionesFrontendApp
+ */
+angular.module('votacionesFrontendApp')
+  .controller('AuthPersoneroCtrl', [
+    'serviceUsers',
+    'serviceMessages',
+    AuthPersoneroCtrl
+  ]);
+
+function AuthPersoneroCtrl(serviceUsers, serviceMessages) {
+
+  var personerosVm = this;
+
+  function errorGetAllUsers() {
+    serviceMessages.generalMessage('Error', 'Error de operación', "error");
+  }
+
+  function notifyGetAllUsers(users) {
+    personerosVm.students = users;
+  }
+
+  function errorGetPersonerosCandidates() {
+    serviceMessages.generalMessage('Error', 'Error de operación', "error");
+  }
+
+  function notifyGetPersonerosCandidates(users) {
+    personerosVm.personerosCandidates = users;
+  }
+
+  function addCandidates(user) {
+    serviceUsers.setUserAsPersonero(user._id);
+  }
+
+  function removeCandidates(user) {
+    serviceUsers.removeUserAsPersonero(user._id);
+  }
+
+  serviceUsers.getAll().then(0, errorGetAllUsers, notifyGetAllUsers);
+
+  serviceUsers.getUsersPersonerosCandidates().then(0, errorGetPersonerosCandidates, notifyGetPersonerosCandidates);
+
+  personerosVm.addCandidates = addCandidates;
+
+  personerosVm.removeCandidates = removeCandidates;
+  
+}

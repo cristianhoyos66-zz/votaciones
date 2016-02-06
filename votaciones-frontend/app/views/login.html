@@ -1,0 +1,75 @@
+<div
+   class="container">
+  <div
+     class="row">
+    <div
+       class="col-md-8
+	      col-md-offset-2">
+      <div
+	 class="login-panel
+		panel
+		panel-default">
+        <div
+	   class="panel-heading">
+          <h3
+	     class="panel-title">
+	    Inicia sesión para poder votar
+	  </h3>
+        </div>
+        <div
+	   class="panel-body">
+          <form
+	     role="form"
+	     name="signinForm">
+            <fieldset>
+              <div
+		 class="form-group"
+		 ng-class="{'has-success':
+			   signinForm.txtUsername.$valid,
+			   'has-error':
+			   signinForm.txtUsername.$invalid}">
+		<label
+		   class="control-label">
+		  Número de documento:
+		</label>
+                <input
+		   class="form-control"
+		   placeholder="Número de documento"
+		   name="txtUsername"
+		   type="text"
+		   autofocus
+		   required
+		   ng-model="signinVm.user.username">
+              </div>
+              <div
+		 class="form-group"
+		 ng-class="{'has-success':
+			   signinForm.txtPassword.$valid,
+			   'has-error':
+			   signinForm.txtPassword.$invalid}">
+		<label
+		   class="control-label">
+		  Contraseña (si eres estudiante o vas a votar deja este campo en blanco, por favor):
+		</label>
+                <input
+		   class="form-control"
+		   placeholder="Contraseña si no vas a votar"
+		   name="txtPassword"
+		   type="password"
+		   ng-model="signinVm.user.password">
+              </div>
+              <a
+		 ng-click="signinVm.signin()"
+		 class="btn
+			btn-success
+			btn-block"
+		 ng-disabled="signinForm.$invalid">
+		Inicia sesión
+	      </a>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

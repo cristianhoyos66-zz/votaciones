@@ -1,0 +1,56 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name votacionesFrontendApp.controller:AuthStudentsEditcreateCtrl
+ * @description
+ * # AuthStudentsEditcreateCtrl
+ * Controller of the votacionesFrontendApp
+ */
+angular.module('votacionesFrontendApp')
+  .controller('AuthStudentsEditcreateCtrl', [
+    '$uibModalInstance',
+    'resolveData',
+    'serviceUsers',
+    'serviceMessages',
+    AuthStudentsEditcreateCtrl
+  ]);
+
+function AuthStudentsEditcreateCtrl($uibModalInstance, resolveData, serviceUsers, serviceMessages) {
+
+  var editcreateVm = this;
+  
+  function close() {
+    $uibModalInstance.dismiss('cancel');
+  }
+
+  function resolveCreateUpdateUser(resolve) {
+    close();    
+    switch(resolve.operation) {
+    case 1:
+      serviceMessages.generalMessage('Creado', 'Registro creado con éxito', "success");
+      break;
+    case 2:
+      serviceMessages.generalMessage('Actualizado', 'Registro actualizado con éxito', "success");
+      break;
+    }
+  }
+
+  function errorCreateUpdateUser(error) {
+    serviceMessages.generalMessage('Error', 'Error de operación', "error");
+  }
+
+  function save() {
+    if (!editcreateVm.student._id) {
+      editcreateVm.student.profile.idProfile = 2;
+      serviceUsers.create(editcreateVm.student).then(resolveCreateUpdateUser, errorCreateUpdateUser); 
+    }else{
+      serviceUsers.update(editcreateVm.student).then(resolveCreateUpdateUser, errorCreateUpdateUser);
+    }
+  }
+
+  editcreateVm.student = resolveData;
+  editcreateVm.close = close;
+  editcreateVm.save = save;
+  
+}
