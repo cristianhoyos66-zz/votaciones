@@ -43,7 +43,10 @@
 	<div
 	   id="box"
 	   ng-click="homeVm.rate(candidatePersonero, 1)">
-	  <div class="panel panel-primary" style="position: relative">
+	  <div
+	     class="panel panel-primary"
+	     style="position: relative;
+		    height: 147px">
             <div class="panel-heading">
               <div class="row">
 		<div class="col-xs-3">
@@ -65,7 +68,7 @@
 		<div class="clearfix"></div>
               </div>
             </a>
-	    <div id="overlay" ng-if="loggedUser.profile.canVote">
+	    <div id="overlay" ng-if="loggedUser.profile.canVoteByPersonero">
 	      <span id="plus"><i class="fa fa-check"></i></span>
 	    </div>
 	  </div>
@@ -118,7 +121,10 @@
 	<div
 	   id="box"
 	   ng-click="homeVm.rate(candidateComptroller, 2)">
-	  <div class="panel panel-primary" style="position: relative">
+	  <div
+	     class="panel panel-primary"
+	     style="position: relative;
+		    height: 147px">
             <div class="panel-heading">
               <div class="row">
 		<div class="col-xs-3">
@@ -140,7 +146,7 @@
 		<div class="clearfix"></div>
               </div>
             </a>
-	    <div id="overlay" ng-if="loggedUser.profile.canVote">
+	    <div id="overlay" ng-if="loggedUser.profile.canVoteByComptroller">
 	      <span id="plus"><i class="fa fa-check"></i></span>
 	    </div>
 	  </div>
@@ -149,5 +155,3 @@
     </div>
   </div>  
 </div>
-
-

@@ -30,6 +30,7 @@ angular.module('votacionesFrontendApp').run([
   'vbaService',
   'serviceUsers',
   'serviceMessages',
+  '$timeout',
   votacionesFrontendRun
 ]);
 
@@ -51,10 +52,14 @@ function votacionesFrontendConfig(vbaConfigProvider, constantMeteorConfig) {
   vbaConfigProvider.stopSubscriptionsOnLogout(true);
 }
 
-function votacionesFrontendRun($rootScope, constantMeteorConfig, $state, vbaService, serviceUsers, serviceMessages) {
+function votacionesFrontendRun($rootScope, constantMeteorConfig, $state, vbaService, serviceUsers, serviceMessages, $timeout) {
 
   serviceUsers.whoIsLoggedSub().then(0, 0, function(loggedUser) {
-    $rootScope.loggedUser = loggedUser.user;
+    $timeout(function() {
+      $rootScope.$apply(function() {
+	$rootScope.loggedUser = loggedUser[0];
+      });
+    })
   });
    
   //get current state

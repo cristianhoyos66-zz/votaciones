@@ -45,7 +45,9 @@ Publications.whoIsLoggedPub = {
   nameModel: 'users',
   nameObserve: 'whoIsLogged',
   find: function (idUser, params) {
-    return {'profile.isRemove': false, _id: idUser};
+    if (idUser) {
+      return {_id: idUser};
+    }
   }
 };
 
@@ -57,7 +59,8 @@ function createUser(data) {
     profile: {
       document: data.username,
       name: data.profile.name,
-      canVote: true,
+      canVoteByComptroller: true,
+      canVoteByPersonero: true,
       group: data.profile.group,
       grade: data.profile.grade,
       previewImg: data.profile.previewImg,
@@ -101,7 +104,8 @@ function removeUser(idUser) {
   var future = new Future();
   var remove = {
     $set: {
-      'profile.isRemove': true
+      'profile.isRemove': true,
+      username: Random.id()
     }
   };
   Meteor.users.update(idUser, remove, function(err) {
@@ -123,7 +127,10 @@ function createOrUpdateRating(rating, idTypeRating, idUser) {
      Methods.updateRating(rating);
   }else {
     var rating = {
-      candidates: [{idUser: idUser, votes: 0}]
+      candidates: [
+	{idUser: idUser, votes: 0},
+	{idUser: '0', votes: 0}
+      ]
     };
     Methods.createRating(rating, idTypeRating);
   }
@@ -200,6 +207,46 @@ function setAdminOrVoter(config) {
   Meteor.users.update(config.idUser, update);
 }
 
+function saveUsersByExcelFile(fileName) {  
+  var excel = new Excel('xlsx');
+  var workBook = excel.readFile(Constants.SERVER_FOLDER + Constants.UPLOAD_FOLDER + ConstantsUploadFolders[1] + fileName);
+  var workSheets = workBook.SheetNames;
+  var workSheet = workSheets[0];
+  var row = 2;
+  while (workBook.Sheets[workSheet]['B'+row.toString()]) {
+    var strRow = row.toString();
+    var user = {
+      username: workBook.Sheets[workSheet]['E'+strRow].v.toString(),
+      profile: {
+	name: workBook.Sheets[workSheet]['D'+strRow].v,
+	group: workBook.Sheets[workSheet]['C'+strRow].v,
+	grade: workBook.Sheets[workSheet]['B'+strRow].v,
+	idProfile: 2
+      }
+    }
+    createUser(user);
+    row++;
+  }
+}
+
+function removeAllUsers() {
+  var future = new Future();
+  var match = {
+    'profile.idProfile': 2,
+    'profile.isRemove': false
+  };
+  var quantityUsersToRemove = Models.users.find(match).count();
+  for (var i = 0; i < quantityUsersToRemove; i++) {
+    var update = {
+      $set: {
+	'profile.isRemove': true,
+	username: Random.id()
+      }
+    };
+    Meteor.users.update(match, update);
+  }
+}
+
 Methods.userCreate = createUser;
 Methods.updateUser = updateUser;
 Methods.removeUser = removeUser;
@@ -209,3 +256,5 @@ Methods.removeUserAsPersonero = removeUserAsPersonero;
 Methods.removeUserAsComptroller = removeUserAsComptroller;
 Methods.whoIsLogged = whoIsLogged;
 Methods.setAdminOrVoter = setAdminOrVoter;
+Methods.saveUsersByExcelFile = saveUsersByExcelFile;
+Methods.removeAllUsers = removeAllUsers;

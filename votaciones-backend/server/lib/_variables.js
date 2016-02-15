@@ -8,6 +8,7 @@ mime = Meteor.npmRequire('mime');
 
 ConstantsUploadFolders = [
   'users/',
+  'excel_files/'
 ];
 
 Constants = {

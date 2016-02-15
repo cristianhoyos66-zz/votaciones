@@ -9,8 +9,8 @@
  */
 angular.module('votacionesFrontendApp')
   .constant('constantMeteorConfig', {
-    url: '192.168.1.54:3000',
-    urlServer: 'http://192.168.1.54:3000/',
+    url: '127.0.0.1:3000',
+    urlServer: 'http://127.0.0.1:3000/',
     methods: {
       users: {
 	create: 'userCreate',
@@ -21,7 +21,9 @@ angular.module('votacionesFrontendApp')
 	removeUserAsPersonero: 'removeUserAsPersonero',
 	removeUserAsComptroller: 'removeUserAsComptroller',
 	whoIsLogged: 'whoIsLogged',
-	setAdminOrVoter: 'setAdminOrVoter'
+	setAdminOrVoter: 'setAdminOrVoter',
+	saveUsersByExcelFile: 'saveUsersByExcelFile',
+	removeAllUsers: 'removeAllUsers'
       },
       uploads: {
 	uploadFile: 'getRouteFile'

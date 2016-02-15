@@ -13,10 +13,12 @@ angular.module('votacionesFrontendApp')
     'serviceMessages',
     '$timeout',
     '$rootScope',
+    '$state',
+    'serviceUsers',
     AuthHomeCtrl
   ]);
 
-function AuthHomeCtrl(serviceRatings, serviceMessages, $timeout, $rootScope) {
+function AuthHomeCtrl(serviceRatings, serviceMessages, $timeout, $rootScope, $state, serviceUsers) {
 
   var homeVm = this;
 
@@ -96,7 +98,7 @@ function AuthHomeCtrl(serviceRatings, serviceMessages, $timeout, $rootScope) {
   }
 
   function rate(selectedUser, idTypeRating) {
-    if ($rootScope.loggedUser.profile.canVote) {
+    if ((idTypeRating === 1 && $rootScope.loggedUser.profile.canVoteByPersonero) || (idTypeRating === 2 && $rootScope.loggedUser.profile.canVoteByComptroller)) {
       swal({   
 	title: '¿Estás seguro de tu decisión?',   
 	text: 'No se puede volver a votar',   
@@ -111,15 +113,24 @@ function AuthHomeCtrl(serviceRatings, serviceMessages, $timeout, $rootScope) {
 	if (selectedUser) {
 	  var config = {
 	    idType: idTypeRating,
-	    idSelectedCandidate: selectedUser._id
+	    idSelectedCandidate: selectedUser._id ? selectedUser._id : '0'
 	  };
 	  serviceRatings.rate(config).then(resolveRate, errorRate);
+	 //$state.go($state.current, {}, {reload: true});
 	}
       });   
     }
   }
 
   serviceRatings.getRatings().then(0, errorGetRatings, notifyGetRatings);
+
+  serviceUsers.whoIsLoggedSub().then(0, 0, function(loggedUser) {
+    $timeout(function() {
+      $rootScope.$apply(function() {
+	$rootScope.loggedUser = loggedUser[0];
+      });
+    })
+  });
 
   homeVm.startRating = startRating;
   homeVm.stopRating = stopRating;

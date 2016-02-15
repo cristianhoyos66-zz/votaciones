@@ -23,7 +23,7 @@ function AuthComptrollerCtrl(serviceUsers, serviceMessages) {
   }
 
   function notifyGetAllUsers(users) {
-    comptrollersVm.students = users;
+    comptrollersVm.students = angular.copy(users);
     for (var i = 0; i < comptrollersVm.students.length; i++) {
       for (var j = 0; j < comptrollersVm.comptrollerCandidates.length; j++) {
 	if (comptrollersVm.students[i]._id === comptrollersVm.comptrollerCandidates[j]._id) {

@@ -13,10 +13,11 @@ angular.module('votacionesFrontendApp')
     '$timeout',
     'serviceUsers',
     'serviceMessages',
+    'serviceUpload',
     AuthStudentsCtrl
   ]);
 
-function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages) {
+function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, serviceUpload) {
 
   var studentsVm = this;
 
@@ -84,11 +85,63 @@ function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages) {
     studentsVm.students = users;
   }
 
+   function fileSelected (files) {
+     if (files && files.length > 0 && (files[0].type.indexOf("application") > -1)) {
+      var file = files[0];
+      var reader = new FileReader();
+      reader.onload = function () {
+        var data = {
+          fileName: file.name,
+          fileData: reader.result,
+          folder: 1
+        };
+        serviceUpload.uploadFile(data).then(function (result) {
+	  serviceUsers.saveUsersByExcelFile(result.fileName).then(function(resolve) {
+	    angular.element('#file').val(null);
+	    serviceMessages.generalMessage('Usuarios agregados', 'Los usuarios se agregaron correctamente', "success");
+	  });
+        });
+      };
+      reader.readAsBinaryString(file);
+    }
+  };
+
+  function selectFile() {
+    angular.element('#file').trigger('click');    		
+  };
+
+  function resolveRemoveAllUsers(resolve) {
+    serviceMessages.generalMessage('Eliminados', 'Registros eliminados con éxito', "success");
+  }
+
+  function rejectRemoveAllUsers() {
+    serviceMessages.generalMessage('Error', 'Error de operación', "error");
+  }
+
+  function removeAllUsers() {
+    swal({   
+      title: '¿Estás seguro?',   
+      text: 'Si eliminas estos registros, no se podrán recuperar',   
+      type: "warning",   
+      showCancelButton: true,   
+      confirmButtonColor: "#F0AD4E",   
+      confirmButtonText: 'Sí, eliminar',   
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: "#EF5350",
+      closeOnConfirm: false 
+    }, function() {   
+      serviceUsers.removeAllUsers().then(resolveRemoveAllUsers, rejectRemoveAllUsers);
+    });
+  }
+
   serviceUsers.getAll().then(0, errorGetAllUsers, notifyGetAllUsers);
   redrawFootable();
   studentsVm.newStudent = newStudent;
   studentsVm.editStudent = editStudent;
   studentsVm.removeStudent = removeStudent;
+  studentsVm.fileSelected = fileSelected;
+  studentsVm.selectFile = selectFile;
+  studentsVm.removeAllUsers = removeAllUsers;
   
 }
 

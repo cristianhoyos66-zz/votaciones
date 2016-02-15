@@ -13,10 +13,10 @@ angular.module('votacionesFrontendApp')
         fileread: '&',
       },
       link: function (scope, element) {
-        element[0].style.display = 'none';
+	element[0].style.display = 'none';
         element.bind('change', function (evt) {
           scope.$apply(function () {
-            scope.fileread({files: evt.target.files});
+	    scope.fileread({files: evt.target.files});
           });
         });
       }

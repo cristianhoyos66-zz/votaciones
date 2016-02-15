@@ -8,12 +8,26 @@
 	      title="Agregar"
 	      ng-click="studentsVm.newStudent()">
       </button>
+      <input
+	 type="file"
+	 fileread="studentsVm.fileSelected(files)"
+	 id="file"
+	 accept="file_extension">
       <button class="btn
 		     btn-info
 		     fa
 		     fa-upload
 		     button-title"
-	      title="Subir archivo">
+	      title="Subir archivo"
+	      ng-click="studentsVm.selectFile()">
+      </button>
+      <button class="btn
+		     btn-danger
+		     fa
+		     fa-close
+		     button-title"
+	      title="Borrar todos los estudiantes"
+	      ng-click="studentsVm.removeAllUsers()">
       </button>
     </h1>
   </div>  

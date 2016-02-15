@@ -23,7 +23,7 @@ function AuthPersoneroCtrl(serviceUsers, serviceMessages) {
   }
 
   function notifyGetAllUsers(users) {
-    personerosVm.students = users;
+    personerosVm.students = angular.copy(users);
     for (var i = 0; i < personerosVm.students.length; i++) {
       for (var j = 0; j < personerosVm.personerosCandidates.length; j++) {
 	if (personerosVm.students[i]._id === personerosVm.personerosCandidates[j]._id) {
@@ -39,7 +39,6 @@ function AuthPersoneroCtrl(serviceUsers, serviceMessages) {
 
   function notifyGetPersonerosCandidates(users) {
     personerosVm.personerosCandidates = users;
-    serviceUsers.getAll().then(0, errorGetAllUsers, notifyGetAllUsers);     
   }
 
   function addCandidates(user) {

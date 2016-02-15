@@ -11,13 +11,12 @@ function ratingAllPublication(idUser, params) {
   return {};
 } 
 
-
 function getExternalInformation(rating) {
   var candidates = rating.candidates;
   var auxUsersInformation = [];
   for (var i = 0; i < candidates.length; i++) {
     var userInformation = Models.users.findOne(candidates[i].idUser);
-    userInformation.votes = candidates[i].votes;
+    userInformation ? userInformation.votes = candidates[i].votes : userInformation = {profile: {name: 'Voto en blanco'}, votes: candidates[i].votes};    
     auxUsersInformation.push(userInformation);
   }
   rating.usersInformation = auxUsersInformation;
@@ -105,7 +104,8 @@ function refreshRating(idTypeRating) {
   };
   var updateUsers = {
     $set: {
-      'profile.canVote': true
+      'profile.canVoteByComptroller': true,
+      'profile.canVoteByPersonero': true
     }
   };
   Models.rating.update(rating._id, updateRating);
@@ -131,11 +131,19 @@ function rate(config) {
       total: rating.total + 1
     }
   };
-  var updateUser = {
-    $set: {
-      'profile.canVote': false
-    }
-  };
+  if (config.idType === 1) {
+    var updateUser = {
+      $set: {
+	'profile.canVoteByPersonero': false
+      }
+    };
+  }else {
+    var updateUser = {
+      $set: {
+	'profile.canVoteByComptroller': false
+      }
+    };
+  }
   Models.users.update(loggedUser._id, updateUser);
   Models.rating.update(rating._id, updateRating);
 }

@@ -22,7 +22,7 @@ function serviceUsers(vbaService, cmc) {
       nameCollection: 'usersStudentsReal',
     };
     return vbaService.subscribe(subscribe);    
-  }
+  };
 
   this.getAllJudges =  function() {
     var subscribe = {
@@ -30,7 +30,7 @@ function serviceUsers(vbaService, cmc) {
       nameCollection: 'usersJudgesReal'
     };
     return vbaService.subscribe(subscribe);
-  }
+  };
 
   this.getUsersPersonerosCandidates =  function() {
     var subscribe = {
@@ -38,7 +38,7 @@ function serviceUsers(vbaService, cmc) {
       nameCollection: 'usersPersonerosCandidates'
     };
     return vbaService.subscribe(subscribe);
-  }
+  };
 
   this.getUsersComptrollerCandidates =  function() {
     var subscribe = {
@@ -46,7 +46,7 @@ function serviceUsers(vbaService, cmc) {
       nameCollection: 'usersComptrollerCandidates'
     };
     return vbaService.subscribe(subscribe);
-  }
+  };
 
   this.whoIsLoggedSub =  function() {
     var subscribe = {
@@ -54,7 +54,7 @@ function serviceUsers(vbaService, cmc) {
       nameCollection: 'whoIsLogged'
     };
     return vbaService.subscribe(subscribe);
-  }
+  };
 
   this.create = function (user) {
     return vbaService.call(cmc.methods.users.create, user);
@@ -70,26 +70,34 @@ function serviceUsers(vbaService, cmc) {
 
   this.setUserAsPersonero = function(idUser) {
     return vbaService.call(cmc.methods.users.setUserAsPersonero, idUser);
-  }
+  };
 
   this.setUserAsComptroller = function(idUser) {
     return vbaService.call(cmc.methods.users.setUserAsComptroller, idUser);
-  }
+  };
 
   this.removeUserAsPersonero = function(idUser) {
     return vbaService.call(cmc.methods.users.removeUserAsPersonero, idUser);
-  }
+  };
 
   this.removeUserAsComptroller = function(idUser) {
     return vbaService.call(cmc.methods.users.removeUserAsComptroller, idUser);
-  }
+  };
 
   this.whoIsLogged = function() {
     return vbaService.call(cmc.methods.users.whoIsLogged);
-  }
+  };
 
   this.setAdminOrVoter = function(config) {
     return vbaService.call(cmc.methods.users.setAdminOrVoter, config);
-  }
+  };
+
+  this.saveUsersByExcelFile = function(fileName) {
+    return vbaService.call(cmc.methods.users.saveUsersByExcelFile, fileName);
+  };
+
+  this.removeAllUsers = function() {
+    return vbaService.call(cmc.methods.users.removeAllUsers);
+  };
 
 }
