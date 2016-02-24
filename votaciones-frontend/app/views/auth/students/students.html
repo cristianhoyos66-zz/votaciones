@@ -42,7 +42,7 @@
 		    text-no-radius
 		    textfield-no-border"/>
     </div>
-    <table class="table footable" data-filter="#filter" data-page-size="10">
+    <table class="table footable" data-filter="#filter" data-page-size="200">
       <thead>
 	<tr>
 	  <th data-sort-initial="true">
@@ -65,7 +65,7 @@
 	<tr class="alternate-color"
 	    ng-repeat="student
 		       in
-		       studentsVm.students">
+		       students">
 	  <td>{{student.profile.document}}</td>
 	  <td>{{student.profile.name}}</td>
 	  <td>{{student.profile.grade}}</td>

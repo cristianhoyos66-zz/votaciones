@@ -1,5 +1,6 @@
 'use strict';
 Meteor.startup(function () {
+  Methods.createFirstUser();
   Meteor.methods(Methods);
   initPublications();
   Accounts.removeDefaultRateLimit();

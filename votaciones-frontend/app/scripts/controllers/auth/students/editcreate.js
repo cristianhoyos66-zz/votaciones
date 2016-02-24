@@ -14,10 +14,11 @@ angular.module('votacionesFrontendApp')
     'serviceUsers',
     'serviceMessages',
     'serviceUpload',
+    '$rootScope',
     AuthStudentsEditcreateCtrl
   ]);
 
-function AuthStudentsEditcreateCtrl($uibModalInstance, resolveData, serviceUsers, serviceMessages, serviceUpload) {
+function AuthStudentsEditcreateCtrl($uibModalInstance, resolveData, serviceUsers, serviceMessages, serviceUpload, $rootScope) {
 
   var editcreateVm = this;
 
@@ -57,6 +58,7 @@ function AuthStudentsEditcreateCtrl($uibModalInstance, resolveData, serviceUsers
       serviceMessages.generalMessage('Actualizado', 'Registro actualizado con éxito', "success");
       break;
     }
+    $rootScope.getAllStudents();
   }
 
   function errorCreateUpdateUser(error) {

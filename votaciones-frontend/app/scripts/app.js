@@ -45,8 +45,8 @@ function votacionesFrontendConfig(vbaConfigProvider, constantMeteorConfig) {
   var activeDebug = location.host.match('127.0.0.1') ? true : false;
   //virtual beams asteroid
   vbaConfigProvider.host(constantMeteorConfig.url);
-  vbaConfigProvider.logError(activeDebug);
-  vbaConfigProvider.log(activeDebug);
+  vbaConfigProvider.logError(false);
+  vbaConfigProvider.log(false);
   vbaConfigProvider.loginRequiredInCalls(true);
   vbaConfigProvider.loginRequiredInSubscribes(true);
   vbaConfigProvider.stopSubscriptionsOnLogout(true);

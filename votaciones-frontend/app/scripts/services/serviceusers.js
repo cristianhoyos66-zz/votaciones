@@ -100,4 +100,9 @@ function serviceUsers(vbaService, cmc) {
     return vbaService.call(cmc.methods.users.removeAllUsers);
   };
 
+  this.getAllUsers = function() {
+    return vbaService.call(cmc.methods.users.getAllUsers);
+  };
+
+
 }

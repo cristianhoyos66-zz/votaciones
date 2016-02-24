@@ -23,7 +23,12 @@ function AuthComptrollerCtrl(serviceUsers, serviceMessages) {
   }
 
   function notifyGetAllUsers(users) {
-    comptrollersVm.students = angular.copy(users);
+    comptrollersVm.students = [];
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].profile.grade === 'Ac'){
+	comptrollersVm.students.push(users[i]);
+      }
+    }
     for (var i = 0; i < comptrollersVm.students.length; i++) {
       for (var j = 0; j < comptrollersVm.comptrollerCandidates.length; j++) {
 	if (comptrollersVm.students[i]._id === comptrollersVm.comptrollerCandidates[j]._id) {

@@ -14,10 +14,11 @@ angular.module('votacionesFrontendApp')
     'serviceUsers',
     'serviceMessages',
     'serviceUpload',
+    '$rootScope',
     AuthStudentsCtrl
   ]);
 
-function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, serviceUpload) {
+function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, serviceUpload, $rootScope) {
 
   var studentsVm = this;
 
@@ -36,6 +37,20 @@ function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, se
     });
   }
 
+  function resolveGetAllUsers(resolve) {
+    redrawFootable();
+    $rootScope.students = [];
+    $rootScope.students.push.apply($rootScope.students, resolve.users);
+  }
+
+  function errorGetAllUsers() {
+    serviceMessages.generalMessage('Error', 'Error de operación', "error");
+  }
+
+  $rootScope.getAllStudents = function() {
+    serviceUsers.getAllUsers().then(resolveGetAllUsers, errorGetAllUsers);
+  };
+
   function newStudent() {
     instanceStudentsModal();
   }
@@ -45,7 +60,8 @@ function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, se
   }
 
   function resolveRemoveStudent (resolve) {
-    serviceMessages.generalMessage('Eliminado', 'Registro eliminado con éxito', "success"); 
+    serviceMessages.generalMessage('Eliminado', 'Registro eliminado con éxito', "success");
+    $rootScope.getAllStudents();
   }
 
   function errorRemoveStudent() {
@@ -85,8 +101,8 @@ function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, se
     studentsVm.students = users;
   }
 
-   function fileSelected (files) {
-     if (files && files.length > 0 && (files[0].type.indexOf("application") > -1)) {
+  function fileSelected (files) {
+    if (files && files.length > 0 && (files[0].type.indexOf("application") > -1)) {
       var file = files[0];
       var reader = new FileReader();
       reader.onload = function () {
@@ -99,6 +115,7 @@ function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, se
 	  serviceUsers.saveUsersByExcelFile(result.fileName).then(function(resolve) {
 	    angular.element('#file').val(null);
 	    serviceMessages.generalMessage('Usuarios agregados', 'Los usuarios se agregaron correctamente', "success");
+	    $rootScope.getAllStudents();
 	  });
         });
       };
@@ -112,6 +129,7 @@ function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, se
 
   function resolveRemoveAllUsers(resolve) {
     serviceMessages.generalMessage('Eliminados', 'Registros eliminados con éxito', "success");
+    $rootScope.getAllStudents();
   }
 
   function rejectRemoveAllUsers() {
@@ -134,7 +152,9 @@ function AuthStudentsCtrl($uibModal, $timeout, serviceUsers, serviceMessages, se
     });
   }
 
-  serviceUsers.getAll().then(0, errorGetAllUsers, notifyGetAllUsers);
+  $rootScope.getAllStudents();
+  
+  //serviceUsers.getAll().then(0, errorGetAllUsers, notifyGetAllUsers);
   redrawFootable();
   studentsVm.newStudent = newStudent;
   studentsVm.editStudent = editStudent;

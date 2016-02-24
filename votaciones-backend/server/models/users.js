@@ -110,6 +110,13 @@ function removeUser(idUser) {
   };
   Meteor.users.update(idUser, remove, function(err) {
     Utils.hasError(err);
+    var user = Models.users.findOne(idUser);
+    if (user.profile.isPersoneroCandidate) {
+      removeUserAsPersonero(idUser);
+    }
+    if (user.profile.isComptrollerCandidate) {
+      removeUserAsComptroller(idUser);
+    }    
     var result = {
       status: 1,
       message: 'user removed',
@@ -235,15 +242,47 @@ function removeAllUsers() {
     'profile.idProfile': 2,
     'profile.isRemove': false
   };
-  var quantityUsersToRemove = Models.users.find(match).count();
-  for (var i = 0; i < quantityUsersToRemove; i++) {
+  var usersToModify = Models.users.find(match).fetch();
+  for (var i = 0; i < usersToModify.length; i++) {
+    var user = usersToModify[i];
     var update = {
       $set: {
 	'profile.isRemove': true,
 	username: Random.id()
       }
     };
-    Meteor.users.update(match, update);
+    Meteor.users.update({_id: user._id}, update);
+    if (user.profile.isPersoneroCandidate) {
+      removeUserAsPersonero(user._id);
+    }
+    if (user.profile.isComptrollerCandidate) {
+      removeUserAsComptroller(user._id);
+    }    
+  }
+  Methods.refreshRating(1);
+  Methods.refreshRating(2);
+}
+
+function createFirstUser() {
+  var firstUser = {
+    username: '1152455906',
+    password: '123123123',
+    profile: {
+      name: 'Cristian Hoyos',
+      idProfile: 1
+    }
+  };
+  var totalUsers = Models.users.find().count();
+  if (totalUsers === 0) {
+    createUser(firstUser);
+  }
+}
+
+function getAllUsers() {
+  var users = Models.users.find({'profile.isRemove': false, 'profile.idProfile': 2}).fetch();
+  return {
+    status: 1,
+    users: users
   }
 }
 
@@ -258,3 +297,5 @@ Methods.whoIsLogged = whoIsLogged;
 Methods.setAdminOrVoter = setAdminOrVoter;
 Methods.saveUsersByExcelFile = saveUsersByExcelFile;
 Methods.removeAllUsers = removeAllUsers;
+Methods.createFirstUser = createFirstUser;
+Methods.getAllUsers = getAllUsers;

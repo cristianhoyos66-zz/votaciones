@@ -23,7 +23,12 @@ function AuthPersoneroCtrl(serviceUsers, serviceMessages) {
   }
 
   function notifyGetAllUsers(users) {
-    personerosVm.students = angular.copy(users);
+    personerosVm.students = [];
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].profile.grade === 'Ac'){
+	personerosVm.students.push(users[i]);
+      }
+    }
     for (var i = 0; i < personerosVm.students.length; i++) {
       for (var j = 0; j < personerosVm.personerosCandidates.length; j++) {
 	if (personerosVm.students[i]._id === personerosVm.personerosCandidates[j]._id) {

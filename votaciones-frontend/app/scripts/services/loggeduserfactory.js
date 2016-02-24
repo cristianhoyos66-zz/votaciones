@@ -14,7 +14,5 @@ angular.module('votacionesFrontendApp')
       loggedUser: {}
     };
 
-    return {
-      sharedData
-    };
+    return sharedData;
   });
