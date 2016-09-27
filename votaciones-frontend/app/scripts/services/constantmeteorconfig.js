@@ -9,8 +9,8 @@
  */
 angular.module('votacionesFrontendApp')
   .constant('constantMeteorConfig', {
-    url: '52.34.8.54:3000',
-    urlServer: 'http://52.34.8.54:3000/',
+    url: '52.34.8.54:800',
+    urlServer: 'http://52.34.8.54:800/',
     //url: '127.0.0.1:3000',
     //urlServer: 'http://127.0.0.1:3000/',
     methods: {
@@ -35,7 +35,9 @@ angular.module('votacionesFrontendApp')
 	startRating: 'startRating',
 	stopRating: 'stopRating',
 	refreshRating: 'refreshRating',
-	rate: 'rate'
+	rate: 'rate',
+	downloadRateByPersonero: 'downloadRateByPersonero',
+	downloadRateByComptroller: 'downloadRateByComptroller'
       }
     }
   });

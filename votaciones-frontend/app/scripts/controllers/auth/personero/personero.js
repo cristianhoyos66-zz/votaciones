@@ -25,8 +25,20 @@ function AuthPersoneroCtrl(serviceUsers, serviceMessages) {
   function notifyGetAllUsers(users) {
     personerosVm.students = [];
     for (var i = 0; i < users.length; i++) {
-      if (users[i].profile.grade === 'Ac'){
-	personerosVm.students.push(users[i]);
+      var user = users[i];
+      switch (user.username) {
+      case '1001226011':
+	personerosVm.students.push(user);
+	break;
+      case '1000292830':
+	personerosVm.students.push(user);
+	break;
+      case '1000189695':
+	personerosVm.students.push(user);
+	break;
+      case '99042706481':
+	personerosVm.students.push(user);
+	break;
       }
     }
     for (var i = 0; i < personerosVm.students.length; i++) {

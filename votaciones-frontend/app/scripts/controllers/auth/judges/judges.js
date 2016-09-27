@@ -16,7 +16,7 @@ angular.module('votacionesFrontendApp')
     AuthJudgesJudgesCtrl
   ]);
 
-function AuthJudgesJudgesCtrl($uibModal, $timeout, serviceUsers) {
+function AuthJudgesJudgesCtrl($uibModal, $timeout, serviceUsers, serviceMessages) {
 
   var judgesVm = this;
 
@@ -63,8 +63,8 @@ function AuthJudgesJudgesCtrl($uibModal, $timeout, serviceUsers) {
       cancelButtonColor: "#EF5350",
       closeOnConfirm: false 
     }, function() {   
-      if (student) {
-	serviceUsers.remove(judge._id).then(resolveRemoveStudent, errorRemoveStudent);
+      if (judge) {
+	serviceUsers.remove(judge._id).then(resolveRemoveJudge, errorRemoveJudge);
       }
     });
   }
@@ -88,5 +88,5 @@ function AuthJudgesJudgesCtrl($uibModal, $timeout, serviceUsers) {
   redrawFootable();
   judgesVm.newJudge = newJudge;
   judgesVm.editJudge = editJudge;
-  judgesVm.removeStudent = removeJudge;
+  judgesVm.removeJudge = removeJudge;
 }

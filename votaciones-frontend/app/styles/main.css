@@ -1,6 +1,6 @@
 /* Space out content a bit */
 body {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -78,106 +78,106 @@ body {
 }
 
 .nav>li.active>a {
-text-decoration: none;
-background-color: #eee;
+  text-decoration: none;
+  background-color: #eee;
 }
 
 .textfield-no-border {
-    border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 
 .cursor-pointer{
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .profile-image {
-    margin-top: -11px;
-    width: 40px;
-    border-radius: 50%;
+  margin-top: -11px;
+  width: 40px;
+  border-radius: 50%;
 }
 
 .navbar-top-links li a {
-    max-height: 50px;
+  max-height: 50px;
 }
 
 tr.alternate-color:nth-child(2n){
-    background: none repeat scroll 0% 0% #ECECEC;
+  background: none repeat scroll 0% 0% #ECECEC;
 }
 
 .button-title {
-    float: right;
-    margin: 2px;
+  float: right;
+  margin: 2px;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .button-as {
-    float: left;
-    margin-top: 15px;
+  float: left;
+  margin-top: 15px;
 }
 
 .huge-2 {
-    font-size: 15px;
-    font-weight: bold;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .img-list {
-    width: 45%;
-    height: 37px;
-    border-radius: 50%;
+  width: 45%;
+  height: 37px;
+  border-radius: 50%;
 }
 
 .img-candidate {
-    border-radius: 50%;
-    width: 5em;
-    height: 5em;
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
 }
 
 #box {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #overlay {
-    background: rgba(0,0,0,.75);
-    text-align: center;
-    opacity: 0;
-    -webkit-transition: opacity .25s ease;
-    -moz-transition: opacity .25s ease;
-    position: absolute;
-    border-radius: 4px;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    vertical-align: middle;
+  background: rgba(0,0,0,.75);
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: opacity .25s ease;
+  -moz-transition: opacity .25s ease;
+  position: absolute;
+  border-radius: 4px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
 }
 
 #box:hover #overlay {
-    opacity:1;
+  opacity:1;
 }
 
 #plus {
-    font-family:Helvetica;
-    font-weight:900;
-    color:rgba(255,255,255,.85);
-    font-size:96px;
+  font-family:Helvetica;
+  font-weight:900;
+  color:rgba(255,255,255,.85);
+  font-size:96px;
 }
 
 .bg-color {
-   background-color: rgb(183, 178, 178);
+  background-color: rgb(183, 178, 178);
 }
 
 .ellipsis-lu {
-    width: 196px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  width: 196px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .logo {
-    width: 22%;
-    margin-top: -9px;
-    margin-left: 22px;
+  width: 22%;
+  margin-top: -9px;
+  margin-left: 22px;
 }

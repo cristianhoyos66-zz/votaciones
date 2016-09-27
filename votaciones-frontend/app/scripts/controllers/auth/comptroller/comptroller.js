@@ -25,8 +25,14 @@ function AuthComptrollerCtrl(serviceUsers, serviceMessages) {
   function notifyGetAllUsers(users) {
     comptrollersVm.students = [];
     for (var i = 0; i < users.length; i++) {
-      if (users[i].profile.grade === 'Ac'){
-	comptrollersVm.students.push(users[i]);
+      var user = users[i];
+      switch (user.username) {
+      case '1076320203':
+	comptrollersVm.students.push(user);
+	break;
+      case '1002151524':
+	comptrollersVm.students.push(user);
+	break;
       }
     }
     for (var i = 0; i < comptrollersVm.students.length; i++) {

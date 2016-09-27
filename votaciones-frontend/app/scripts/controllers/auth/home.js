@@ -132,8 +132,18 @@ function AuthHomeCtrl(serviceRatings, serviceMessages, $timeout, $rootScope, $st
     })
   });
 
+  function downloadRateByComptroller() {
+    serviceRatings.downloadRateByComptroller();
+  }
+
+  function downloadRateByPersonero() {
+    serviceRatings.downloadRateByPersonero();
+  }
+
   homeVm.startRating = startRating;
   homeVm.stopRating = stopRating;
   homeVm.refreshRating = refreshRating;
   homeVm.rate = rate;
+  homeVm.downloadRateByPersonero = downloadRateByPersonero;
+  homeVm.downloadRateByComptroller = downloadRateByComptroller;
 }

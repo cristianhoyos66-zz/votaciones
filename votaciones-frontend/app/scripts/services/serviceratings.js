@@ -47,5 +47,13 @@ function serviceRatings(vbaService, cmc) {
   this.rate = function(config) {
     return vbaService.call(cmc.methods.ratings.rate, config);
   }
+
+  this.downloadRateByPersonero = function() {
+    return vbaService.call(cmc.methods.ratings.downloadRateByPersonero);
+  }
+
+  this.downloadRateByComptroller = function() {
+    return vbaService.call(cmc.methods.ratings.downloadRateByComptroller);
+  }
   
 }

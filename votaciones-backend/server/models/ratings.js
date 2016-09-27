@@ -95,21 +95,23 @@ function refreshVotesToAllCandidates(arrayCandidates) {
 
 function refreshRating(idTypeRating) {
   var rating = Models.rating.findOne({idType: idTypeRating});
-  var updateRating = {
-    $set: {
-      isStarted: false,
-      total: 0,
-      candidates: refreshVotesToAllCandidates(rating.candidates)
-    }
-  };
-  var updateUsers = {
-    $set: {
-      'profile.canVoteByComptroller': true,
-      'profile.canVoteByPersonero': true
-    }
-  };
-  Models.rating.update(rating._id, updateRating);
-  Models.users.update({}, updateUsers, {multi: true});
+  if (rating) {
+    var updateRating = {
+      $set: {
+	isStarted: false,
+	total: 0,
+	candidates: refreshVotesToAllCandidates(rating.candidates)
+      }
+    };
+    var updateUsers = {
+      $set: {
+	'profile.canVoteByComptroller': true,
+	'profile.canVoteByPersonero': true
+      }
+    };
+    Models.rating.update(rating._id, updateRating);
+    Models.users.update({}, updateUsers, {multi: true});
+  }
 }
 
 function addVoteToCandidate(arrayCandidates, idSelectedCandidate) {
@@ -148,6 +150,14 @@ function rate(config) {
   Models.rating.update(rating._id, updateRating);
 }
 
+function downloadRateByPersonero() {
+  
+}
+
+function downloadRateByComptroller() {
+  
+}
+
 Publications.ratings = {
   namePublish: 'ratings',
   nameModel: 'rating',
@@ -171,3 +181,5 @@ Methods.stopRating = stopRating;
 Methods.findRatingByType = findRatingByType;
 Methods.refreshRating = refreshRating;
 Methods.rate = rate;
+Methods.downloadRateByPersonero = downloadRateByPersonero;
+Methods.downloadRateByComptroller = downloadRateByComptroller;

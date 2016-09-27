@@ -30,11 +30,11 @@
   "appName": "votacionesServer",
 
   // Location of app (local directory)
-  "app": "/home/cristianhoyos66/Documentos/Votaciones/votaciones-backend",
+  "app": "/home/cristianhoyos66/Documentos/universidad/votaciones/votaciones-backend",
 
   // Configure environment
   "env": {
-    "PORT": 3000,
+    "PORT": 800,
     "ROOT_URL": "http://52.34.8.54/",
     "MONGO_URL": "mongodb://localhost:27017/votaciones"
   },
