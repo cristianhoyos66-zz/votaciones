@@ -22,6 +22,7 @@ function AuthComptrollerCtrl(serviceUsers, serviceMessages) {
     serviceMessages.generalMessage('Error', 'Error de operación', "error");
   }
 
+  //RECORDAR CAMBIAR LOS NÚMERO DE IDENTIFICACIÓND DE LOS ESTUDIANTES
   function notifyGetAllUsers(users) {
     comptrollersVm.students = [];
     for (var i = 0; i < users.length; i++) {
