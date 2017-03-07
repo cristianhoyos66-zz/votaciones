@@ -22,6 +22,7 @@ function AuthPersoneroCtrl(serviceUsers, serviceMessages) {
     serviceMessages.generalMessage('Error', 'Error de operación', "error");
   }
 
+  //RECORDAR CAMBIAR LOS NÚMEROS DE IDENTIFICACIÓN DE LOS ESTUDIANTES
   function notifyGetAllUsers(users) {
     personerosVm.students = [];
     for (var i = 0; i < users.length; i++) {
