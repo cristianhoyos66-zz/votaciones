@@ -2,9 +2,9 @@
   // Server authentication info
   "servers": [
     {
-      "host": "ec2-52-34-8-54.us-west-2.compute.amazonaws.com",
+      "host": "ec2-18-219-217-224.us-east-2.compute.amazonaws.com",
       "username": "ubuntu",
-      "pem": "AWS/Tag-instance-1.pem"
+      "pem": "AWS/test.pem"
       // or pem file (ssh based authentication)
       //"pem": "~/.ssh/id_rsa"
     }
@@ -17,7 +17,7 @@
   "setupNode": true,
 
   // WARNING: If nodeVersion omitted will setup 0.10.36 by default. Do not use v, only version number.
-  "nodeVersion": "0.10.40",
+  "nodeVersion": "0.10.41",
 
   // Install PhantomJS in the server
   "setupPhantom": true,
@@ -30,12 +30,12 @@
   "appName": "votacionesServer",
 
   // Location of app (local directory)
-  "app": "/home/cristianhoyos66/Documentos/universidad/votaciones/votaciones-backend",
+  "app": "C:/Users/cristian.hoyos/Documents/MINE/votaciones/votaciones-backend",
 
   // Configure environment
   "env": {
     "PORT": 800,
-    "ROOT_URL": "http://52.34.8.54/",
+    "ROOT_URL": "http://18.219.217.224/",
     "MONGO_URL": "mongodb://localhost:27017/votaciones"
   },
 
