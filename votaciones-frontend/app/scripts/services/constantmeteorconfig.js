@@ -9,8 +9,8 @@
  */
 angular.module('votacionesFrontendApp')
   .constant('constantMeteorConfig', {
-    url: '52.34.8.54:800',
-    urlServer: 'http://52.34.8.54:800/',
+    url: '18.219.53.116:800',
+    urlServer: 'http://18.219.53.116:800/',
     //url: '127.0.0.1:3000',
     //urlServer: 'http://127.0.0.1:3000/',
     methods: {

@@ -1,14 +1,12 @@
 {
   // Server authentication info
-  "servers": [
-    {
-      "host": "ec2-18-219-217-224.us-east-2.compute.amazonaws.com",
-      "username": "ubuntu",
-      "pem": "AWS/test.pem"
+  "servers": [{
+    "host": "ec2-18-219-53-116.us-east-2.compute.amazonaws.com",
+    "username": "ubuntu",
+    "pem": "AWS/test.pem"
       // or pem file (ssh based authentication)
       //"pem": "~/.ssh/id_rsa"
-    }
-  ],
+  }],
 
   // Install MongoDB in the server, does not destroy local MongoDB on future setup
   "setupMongo": true,
@@ -30,12 +28,12 @@
   "appName": "votacionesServer",
 
   // Location of app (local directory)
-  "app": "C:/Users/cristian.hoyos/Documents/MINE/votaciones/votaciones-backend",
+  "app": "C:/Users/HP-15-AX2005la/Documents/Votaciones/votaciones/votaciones-backend",
 
   // Configure environment
   "env": {
     "PORT": 800,
-    "ROOT_URL": "http://18.219.217.224/",
+    "ROOT_URL": "http://18.219.53.116/",
     "MONGO_URL": "mongodb://localhost:27017/votaciones"
   },
 
